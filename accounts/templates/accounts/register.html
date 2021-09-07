@@ -3,7 +3,11 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Join Today</legend>
-            {{ form }}
+           <label>Email</label> {{ form.email }}
+           <label>Phone Number</label> {{ form.phone }}
+           <label>Password</label> {{ form.password1}}
+           <label>Password</label> {{ form.password2}}
+           
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Sign Up</button>

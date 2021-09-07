@@ -1,8 +1,8 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+
 # from accounts.forms import UserRegisterForm
 from .forms import UserRegisterForm, UserLoginForm
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 
 
 # def register(request):
@@ -24,7 +24,6 @@ from django.contrib import messages
 #     return render(request, "account/login.html")
 
 
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -37,20 +36,20 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
 
+
 def login_view(request):
     if request.POST:
         form = UserLoginForm(request.POST)
-        
+
         if form.is_valid():
-            email=request.POST['email']
-            phone=request.POST['phone']
-            password=request.POST['password']
-            user = authenticate(request, email=email, phone=phone, password=password)
+            email_or_phone = request.POST['email_or_phone']
+            password = request.POST['password']
+            user = authenticate(request, email_or_phone=email_or_phone, password=password)
 
             if user is not None:
                 login(request, user)
                 return redirect('home')
     else:
-        form=UserLoginForm()
+        form = UserLoginForm()
 
     return render(request, "accounts/login.html", {'form': form})

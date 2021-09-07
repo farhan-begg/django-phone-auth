@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'dangerrun.backend.AuthBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
